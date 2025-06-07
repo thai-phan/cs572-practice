@@ -10,8 +10,8 @@ import {provideHttpClient} from "@angular/common/http";
 import {Products} from "./product/products.component";
 import {ProductPage} from "./product/productPage.component";
 import {ProductAddForm} from "./product/productAddForm";
-import {Signin} from "./user/signin";
-import {Signup} from "./user/signup";
+import {SignIn} from "./user/sign-in.component";
+import {SignUp} from "./user/sign-up.component";
 import {UserService} from "./user/user-service";
 
 const routes: Routes = [
@@ -33,10 +33,10 @@ const routes: Routes = [
     path: 'add-product', component: ProductAddForm,
   },
   {
-    path: 'signin', component: Signin
+    path: 'signin', component: SignIn
   },
   {
-    path: 'signup', component: Signup
+    path: 'signup', component: SignUp
   },
   // {
   //   path: 'users', component: Users,

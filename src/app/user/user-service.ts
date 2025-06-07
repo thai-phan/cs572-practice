@@ -1,16 +1,13 @@
 import {effect, inject, Injectable, signal} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {Initial_State, Token} from "../types";
 
-interface Token {
 
-}
-let Initial_State: Token = {
-
-}
 @Injectable({
   providedIn: "root"
 })
-export  class UserService {
+export class UserService {
   #http = inject(HttpClient)
 
 
@@ -25,18 +22,14 @@ export  class UserService {
   token = signal('')
   user = signal<Token>(Initial_State)
 
-  signin(data: FormData) {
-    return this.#http.post(this.environment + "/signup", {
-      data
-    })
+  signIn(data: Partial<{ email: string, password: string; }>) {
+    console.log(data)
+    return this.#http.post(environment.BACKEND_URL + "/user/sign-in", data)
   }
 
-  environment = "http://localhost:3000"
 
-  signup(data: FormData) {
-    return this.#http.post(this.environment + "/signup", {
-      data
-    })
+  signUp(data: FormData) {
+    return this.#http.post(environment.BACKEND_URL + "/user/sign-up", data)
   }
 
   isLoggedIn(): boolean {

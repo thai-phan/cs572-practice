@@ -14,10 +14,10 @@ import {UserService} from "./user-service";
   template: `
     <h1>Sign Up</h1>
     <p>
-      <a [routerLink]="['', 'signin']">Back to Sign in</a>
+      <a [routerLink]="['', 'signIn']">Back to Sign in</a>
     </p>
     <form (ngSubmit)="submit()">
-      <input placeholder="fullname" [formControl]="fullname">
+      <input placeholder="fullname" [formControl]="fullName">
       <input placeholder="email" [formControl]="email">
       <input placeholder="password" type="password" [formControl]="password">
       <input placeholder="profile picture" type="file" (change)="access_file($event)">
@@ -26,21 +26,19 @@ import {UserService} from "./user-service";
   `,
   styles: ``
 })
-export class Signup {
+export class SignUp {
   file!: File;
   #userService = inject(UserService)
   routers = inject(Router)
 
   form = inject(FormBuilder).nonNullable.group({
-    fullname: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-    file: ['']
-
+    fullName: ['thai', Validators.required],
+    email: ['thai@gmail.com', Validators.required],
+    password: ['123456546', Validators.required],
   })
 
-  get fullname() {
-    return this.form.controls.fullname
+  get fullName() {
+    return this.form.controls.fullName
   }
 
   get email() {
@@ -50,7 +48,6 @@ export class Signup {
   get password() {
     return this.form.controls.password
   }
-
 
   access_file(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -63,14 +60,15 @@ export class Signup {
     console.log(this.file)
     console.log(this.form.value)
     const data = new FormData();
-    data.append('fullname', this.fullname.value)
+
+    data.append('fullName', this.fullName.value)
     data.append('email', this.email.value)
     data.append('password', this.password.value)
     data.append('profile_picture', this.file)
 
-    this.#userService.signup(data).subscribe(res => {
+    this.#userService.signUp(data).subscribe(res => {
       console.log("data")
-      this.routers.navigate(['signin']);
+      // this.routers.navigate(['signIn']);
     })
   }
 }

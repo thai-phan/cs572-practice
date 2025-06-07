@@ -190,7 +190,7 @@ export class LoginComponent {
   // login() {
   //   const username = this.usernameControl.value;
   //   if (username) {
-  //     this.dataservice.signin(username);
+  //     this.dataservice.signIn(username);
   //     this.router.navigate(['/']);
   //   } else {
   //     this.snackBar.open('Please enter a username', 'Close', { duration: 2000 });

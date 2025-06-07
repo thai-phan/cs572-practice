@@ -8,13 +8,13 @@ export type User = {
 export type Token = {
   _id: string,
   email: string,
-  fullname: string;
+  fullName: string;
 };
 
 export const Initial_State: Token = {
   _id: '',
   email: '',
-  fullname: ''
+  fullName: ''
 };
 
 

@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {UserService} from "./user-service";
 
 @Component({
-  selector: 'app-users',
+  selector: 'app-sign-in',
   imports: [
     RouterLink,
     FormsModule,
@@ -24,7 +24,8 @@ import {UserService} from "./user-service";
   `,
   styles: ``
 })
-export class Signin {
+
+export class SignIn {
   router = inject(HttpClient)
   #userService = inject(UserService)
 
@@ -33,11 +34,11 @@ export class Signin {
     password: ['', Validators.required],
   })
 
-  email() {
+  get email() {
     return this.form.controls.email
   }
 
-  password() {
+  get password() {
     return this.form.controls.password
   }
 
@@ -45,11 +46,12 @@ export class Signin {
   // user = signal<Token>(Init)
 
   submit() {
-    this.#userService.signin(this.form.value).subscribe((res: any) => {
-      console.log(res);
-      const toekn = res.data.token;
 
-      const decoded_token= JSON.parse()
+    this.#userService.signIn(this.form.value).subscribe((res: any) => {
+      console.log(res);
+      const token = res.data.token;
+
+      // const decoded_token= JSON.parse()
     })
   }
 }
