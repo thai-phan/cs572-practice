@@ -14,10 +14,10 @@ import {UserService} from "./user-service";
   template: `
     <h1>Sign Up</h1>
     <p>
-      <a [routerLink]="['', 'signIn']">Back to Sign in</a>
+      <a [routerLink]="['/sign-in']">Back to Sign in</a>
     </p>
     <form (ngSubmit)="submit()">
-      <input placeholder="fullname" [formControl]="fullName">
+      <input placeholder="full name" [formControl]="fullName">
       <input placeholder="email" [formControl]="email">
       <input placeholder="password" type="password" [formControl]="password">
       <input placeholder="profile picture" type="file" (change)="access_file($event)">
@@ -29,12 +29,12 @@ import {UserService} from "./user-service";
 export class SignUp {
   file!: File;
   #userService = inject(UserService)
-  routers = inject(Router)
+  router = inject(Router)
 
   form = inject(FormBuilder).nonNullable.group({
-    fullName: ['thai', Validators.required],
+    fullName: ['Thai Phan', Validators.required],
     email: ['thai@gmail.com', Validators.required],
-    password: ['123456546', Validators.required],
+    password: ['12345678', Validators.required],
   })
 
   get fullName() {
@@ -64,11 +64,10 @@ export class SignUp {
     data.append('fullName', this.fullName.value)
     data.append('email', this.email.value)
     data.append('password', this.password.value)
-    data.append('profile_picture', this.file)
+    data.append('profilePicture', this.file)
 
     this.#userService.signUp(data).subscribe(res => {
-      console.log("data")
-      // this.routers.navigate(['signIn']);
+      this.router.navigate(['/sign-in']);
     })
   }
 }

@@ -1,21 +1,25 @@
 import {Component, inject} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   template: `
     <p>
-      home works!
+      This is home works!
     </p>
-<!--    <button (click)="routers.navigate(['', 'home'])"></button>-->
+    <p>
+      <a [routerLink]="['/sign-in']">Sign in</a>
+    </p>
     
   `,
   styles: ``
 })
 export class Home {
   // get time parameter from the url
-  // protected time = this.routers.getCurrentNavigation()?.extras.queryParams?.time;
+  // protected time = this.router.getCurrentNavigation()?.extras.queryParams?.time;
 
   protected routers = inject(Router)
 }

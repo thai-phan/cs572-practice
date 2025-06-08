@@ -5,13 +5,13 @@ export type User = {
   picture_url?: string;
 };
 
-export type Token = {
+export type AppToken = {
   _id: string,
   email: string,
   fullName: string;
 };
 
-export const Initial_State: Token = {
+export const Initial_State: AppToken = {
   _id: '',
   email: '',
   fullName: ''
