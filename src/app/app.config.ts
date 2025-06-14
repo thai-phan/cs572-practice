@@ -15,10 +15,10 @@ const init = () => {
   const token = localStorage.getItem('token')
   const user = localStorage.getItem('user')
   if (token) {
-    userService.token.set(token)
+    userService.token.set(token);
   }
   if (user) {
-    // login??
+    userService.user.set(JSON.parse(user));
   }
 }
 

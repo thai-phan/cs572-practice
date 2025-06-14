@@ -48,12 +48,10 @@ export class SignIn {
       const token = res.data.token;
 
       const decoded_token = JSON.parse(atob(token.split('.')[1])) as AppToken;
+
       this.#userService.token.set(token);
 
       this.#userService.user.set(decoded_token);
-
-      // localStorage.setItem("token", token)
-
       this.router.navigate(['', 'diary']);
       // const decoded_token= JSON.parse()
     })

@@ -1,9 +1,6 @@
 import {Routes} from "@angular/router";
-import {Products} from "./product/products.component";
 import {inject} from "@angular/core";
 import {UserService} from "./user/user-service";
-import {ProductPage} from "./product/productPage.component";
-import {ProductAddForm} from "./product/productAddForm";
 import {SignIn} from "./user/sign-in.component";
 import {SignUp} from "./user/sign-up.component";
 import {Diary} from "./diary/diary";
@@ -18,10 +15,6 @@ const routes: Routes = [
     // component: Home, // use this if you want to load the component eagerly
   },
   {
-    path: 'products', component: Products,
-    canActivate: [() => inject(UserService).isLoggedIn()]
-  },
-  {
     path: 'sign-in', component: SignIn
   },
   {
@@ -29,11 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'diary', component: Diary,
-    canActivate: [() => {
-      console.log("activate diary")
-      return inject(UserService).isLoggedIn()
-    }]
-
+    canActivate: [() =>  inject(UserService).isLoggedIn()]
   },
   {
     path: '**', redirectTo: 'home'

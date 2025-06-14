@@ -1,4 +1,4 @@
-import {Component, effect, inject, signal} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ProductService} from "./product/product.service";
 import {Router, RouterOutlet} from "@angular/router";
 import {UserService} from "./user/user-service";
